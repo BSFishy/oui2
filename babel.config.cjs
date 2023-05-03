@@ -1,4 +1,5 @@
 const isTest = process.env.NODE_ENV === 'test';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const assumptions = {
   setPublicClassFields: true,
@@ -20,8 +21,9 @@ const presets = [
 const plugins = [
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
   ['@babel/plugin-proposal-class-properties'],
-  ['module-extension-resolver'],
-];
+  // Disable this plugin on everything except production build because it breaks things elsewhere
+  isProduction && ['module-extension-resolver'],
+].filter(Boolean);
 
 module.exports = {
   assumptions,

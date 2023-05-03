@@ -7,7 +7,7 @@
   "module": "./es/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "node scripts/compile-oui.js",
+    "build": "cross-env NODE_ENV=production node scripts/compile-oui.js",
     "clean": "node scripts/clean.js",
     "generate:types": "tsc --declaration --emitDeclarationOnly --outDir types",
     "lint": "yarn lint:ts && yarn lint:es",
@@ -43,6 +43,7 @@
     "babel-plugin-module-extension-resolver": "^1.0.0",
     "chalk": "^5.2.0",
     "child_process": "^1.0.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 
-import { slottedRenderer } from '../../util/slotted-renderer';
+import { slottedRenderer } from '../../util';
 
 import './button.ts';
 
