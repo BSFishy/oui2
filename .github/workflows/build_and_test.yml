@@ -59,6 +59,7 @@ jobs:
         run: yarn test:unit
 
   test-playwright:
+    name: Test Playwright
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
