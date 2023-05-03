@@ -1,0 +1,10 @@
+node_modules/
+/es/
+/dist/
+/storybook/
+/types/
+/.idea/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/reports/
