@@ -107,3 +107,29 @@ jobs:
 
       - name: Build
         run: yarn build
+
+  storybook-build:
+    runs-on: ${{ matrix.os }}
+    name: Build Storybook on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Setup Yarn
+        run: |
+          npm uninstall -g yarn
+          npm i -g yarn@1.22.10
+          yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn storybook:build
