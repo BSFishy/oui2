@@ -16,10 +16,8 @@
     "playwright:test": "yarn playwright test",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build --output-dir storybook",
-    "storybook:test": "storybook dev -p 9999",
-    "test": "yarn test:unit && yarn test:playwright",
-    "test:unit": "jest",
-    "test:playwright": "start-server-and-test storybook:test http://localhost:9999 playwright:test"
+    "test": "yarn test:unit && yarn playwright:",
+    "test:unit": "jest"
   },
   "dependencies": {
     "lit": "^2.7.3"
@@ -56,7 +54,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.0",
-    "start-server-and-test": "^2.0.0",
     "storybook": "^7.0.7",
     "ts-node": "^10.9.1",
     "typescript": "*"
