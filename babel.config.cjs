@@ -1,37 +1,38 @@
 const isTest = process.env.NODE_ENV === 'test';
 
 const assumptions = {
-    "setPublicClassFields": true
+  setPublicClassFields: true,
 };
 
 const presets = [
-    [
-        "@babel/preset-env",
-        {
-            modules: process.env.BABEL_MODULES ? process.env.BABEL_MODULES : false,
-            targets: !isTest ? undefined : {
-                node: 'current',
-            },
-        },
-    ],
-    "@babel/preset-typescript",
+  [
+    '@babel/preset-env',
+    {
+      modules: process.env.BABEL_MODULES ? process.env.BABEL_MODULES : false,
+      targets: !isTest ? undefined : {
+        node: 'current',
+      },
+    },
+  ],
+  '@babel/preset-typescript',
 ];
 
 const plugins = [
-    ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
-    ["@babel/plugin-proposal-class-properties"],
+  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+  ['@babel/plugin-proposal-class-properties'],
+  ['module-extension-resolver'],
 ];
 
 module.exports = {
-    assumptions,
-    presets,
-    plugins,
-    include: [
-        'src/**',
-        'node_modules/lit/**',
-        'node_modules/lit-element/**',
-        'node_modules/lit-html/**',
-        '.storybook/**',
-    ],
-    sourceMaps: true,
+  assumptions,
+  presets,
+  plugins,
+  include: [
+    'src/**',
+    'node_modules/lit/**',
+    'node_modules/lit-element/**',
+    'node_modules/lit-html/**',
+    '.storybook/**',
+  ],
+  sourceMaps: true,
 };
