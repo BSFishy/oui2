@@ -21,8 +21,7 @@ const presets = [
 const plugins = [
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
   ['@babel/plugin-proposal-class-properties'],
-  // Disable this plugin on everything except production build because it breaks things elsewhere
-  isProduction && ['module-extension-resolver'],
+  process.env.ENABLE_EXTENSION_RESOLVER === 'true' && ['module-extension-resolver'],
 ].filter(Boolean);
 
 module.exports = {

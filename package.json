@@ -7,7 +7,7 @@
   "module": "./es/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "cross-env NODE_ENV=production node scripts/compile-oui.js",
+    "build": "cross-env NODE_ENV=production ENABLE_EXTENSION_RESOLVER=true node scripts/compile-oui.js",
     "clean": "node scripts/clean.js",
     "generate:types": "tsc --declaration --emitDeclarationOnly --outDir types",
     "lint": "yarn lint:ts && yarn lint:es",
