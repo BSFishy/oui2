@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-
 import { slottedRenderer } from '../../util';
 
+import '../../theme';
 import './button.ts';
 
 // This default export determines where your story goes in the story list
@@ -14,6 +14,9 @@ const meta: Meta = {
     color: {
       control: 'select',
       options: ['primary', 'secondary'],
+    },
+    onclick: {
+      action: true,
     },
   },
 };
