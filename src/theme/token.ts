@@ -7,10 +7,16 @@ export class Token {
   readonly defaultValue?: string | number;
 
   constructor(path: string[], defaultValue?: string | number) {
-    this.path = path;
+    // Create a copy of the path so that builders can't modify it after we validate it
+    this.path = [...path];
     this.defaultValue = defaultValue;
 
-    // TODO: validate path doesn't contain any bad characters, i.e. [a-zA-Z0-9] (but with tighter restrictions because variable names blah blah blah
+    const regex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
+    for (const segment of this.path) {
+      if (!regex.test(segment)) {
+        throw new Error(`Token segment (${segment}) is invalid`);
+      }
+    }
   }
 
   get variableName(): string {
@@ -35,6 +41,7 @@ export function tokenMap(tokens: string[]): TokenMap {
   for (const key of tokens) {
     const token = REGISTRY.tokens[key];
 
+    // Using unsafe CSS is safe here because we validate the variable name isn't malicious when constructing the token
     mapping[key] = unsafeCSS(`var(--${token.variableName})`);
   }
 

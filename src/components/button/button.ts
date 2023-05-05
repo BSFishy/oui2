@@ -1,21 +1,14 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { consume } from '@lit-labs/context';
 import { styleMap } from 'lit/directives/style-map.js';
-import {
-  token,
-  tokenMap,
-  themeContext,
-  type Theme,
-  getStyle,
-} from '../../theme';
+import { token, tokenMap, Themeable } from '../../theme';
 
 const TEST_TOKEN = token(['example'], 'green');
 
 const tokens = tokenMap([TEST_TOKEN]);
 
 @customElement('oui-button')
-export class OuiButton extends LitElement {
+export class OuiButton extends Themeable(LitElement) {
   static styles = css`
     button {
       background-color: transparent;
@@ -27,18 +20,14 @@ export class OuiButton extends LitElement {
     }
   `;
 
-  @consume({ context: themeContext, subscribe: true })
-  readonly theme: Theme;
-
   @property()
   color?: 'primary' | 'secondary' = 'primary';
 
   render() {
-    console.log(this.theme);
     return html`
       <button
         style=${styleMap({
-          ...getStyle(this.theme, tokens),
+          ...this.getStyle(tokens),
           '--borderColor': this.color === 'primary' ? 'blue' : 'red',
         })}
         role="button"

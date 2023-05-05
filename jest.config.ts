@@ -1,24 +1,17 @@
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 
 const config: Config = {
-    rootDir: '.',
-    roots: [
-        '<rootDir>/src/'
-    ],
-    coverageDirectory: '<rootDir>/reports/jest-coverage',
-    coveragePathIgnorePatterns: ['/node_modules/', '.*\\.d\\.ts'],
-    coverageReporters: ['lcov', 'text-summary'],
-    moduleFileExtensions: [
-        'ts',
-        'js',
-    ],
-    testMatch: [
-        '**/*.test.js',
-        '**/*.test.ts',
-    ],
-    transform: {
-        '^.+\\.(js|ts)$': 'babel-jest'
-    },
+  rootDir: '.',
+  roots: ['<rootDir>/src/'],
+  coverageDirectory: '<rootDir>/reports/jest-coverage',
+  coveragePathIgnorePatterns: ['/node_modules/', '.*\\.d\\.ts'],
+  coverageReporters: ['lcov', 'text-summary'],
+  moduleFileExtensions: ['ts', 'js'],
+  testMatch: ['**/*.test.js', '**/*.test.ts'],
+  transform: {
+    '^.+\\.(js|ts)$': 'babel-jest',
+  },
+  transformIgnorePatterns: ['/node_modules/(?!(lit|lit-element|lit-html)/)'],
 };
 
 export default config;
