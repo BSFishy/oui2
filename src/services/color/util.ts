@@ -2,7 +2,7 @@ import { red, green, blue } from './core';
 
 export function luminance(color: number): number {
   const rgba = [red(color), green(color), blue(color)];
-  const rgba2 = [];
+  const rgba2: number[] = [];
 
   for (let i = 0; i < 3; i++) {
     let rgb = rgba[i] / 255;
