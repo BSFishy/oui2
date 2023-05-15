@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement, state, property } from 'lit/decorators.js';
 import { type Theme } from './index';
 
 import './index';
@@ -24,11 +24,14 @@ export class OuiTest extends LitElement {
   static styles = css``;
 
   @state()
-  protected _old = true;
+  protected theme: 'one' | 'two' | undefined = 'one';
+
+  @property()
+  useDefault: boolean = false;
 
   render() {
     return html`
-      <oui-theme-provider .theme=${this._old ? THEME1 : THEME2}>
+      <oui-theme-provider .theme=${this.getTheme()}>
         <oui-button>Submit</oui-button>
       </oui-theme-provider>
       <br />
@@ -36,7 +39,40 @@ export class OuiTest extends LitElement {
     `;
   }
 
+  private getTheme(): Theme | undefined {
+    switch (this.theme) {
+      case 'one':
+        return THEME1;
+      case 'two':
+        return THEME2;
+      case undefined:
+        return undefined;
+    }
+  }
+
   private _switch() {
-    this._old = !this._old;
+    if (this.useDefault) {
+      switch (this.theme) {
+        case 'one':
+          this.theme = 'two';
+          break;
+        case 'two':
+          this.theme = undefined;
+          break;
+        case undefined:
+          this.theme = 'one';
+          break;
+      }
+    } else {
+      switch (this.theme) {
+        case 'one':
+          this.theme = 'two';
+          break;
+        case 'two':
+        case undefined:
+          this.theme = 'one';
+          break;
+      }
+    }
   }
 }
