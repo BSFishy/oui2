@@ -2,6 +2,8 @@ import { unsafeCSS, type CSSResult } from 'lit';
 import { REGISTRY } from './registry';
 import { v4 as uuidv4 } from 'uuid';
 
+export type TokenId = string;
+
 export class Token {
   readonly path: string[];
   readonly defaultValue?: string | number;
@@ -11,6 +13,7 @@ export class Token {
     this.path = [...path];
     this.defaultValue = defaultValue;
 
+    // We can expand this regex later if we deem more inputs to be valid
     const regex = /^[a-zA-Z][a-zA-Z0-9-]*$/;
     for (const segment of this.path) {
       if (!regex.test(segment)) {
@@ -24,7 +27,8 @@ export class Token {
   }
 }
 
-export function token(path: string[], defaultValue?: string | number): string {
+// TODO: allow using a function as a default value given the current theme to calculate a value given other theme values
+export function token(path: string[], defaultValue?: string | number): TokenId {
   const key = uuidv4();
   const token = new Token(path, defaultValue);
 
@@ -33,9 +37,9 @@ export function token(path: string[], defaultValue?: string | number): string {
   return key;
 }
 
-export type TokenMap = Record<string, CSSResult>;
+export type TokenMap = Record<TokenId, CSSResult>;
 
-export function tokenMap(tokens: string[]): TokenMap {
+export function tokenMap(tokens: TokenId[]): TokenMap {
   const mapping = {};
 
   for (const key of tokens) {

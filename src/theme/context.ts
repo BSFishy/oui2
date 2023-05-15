@@ -4,6 +4,8 @@ import { ContextProvider, createContext } from '@lit-labs/context';
 
 type ThemeValue = string | number;
 
+// TODO: allow extending themes an arbitrary number of levels (theme references theme by value (need to detect cyclical dependencies))
+// TODO: allow using a function as a value given the current theme to calculate a value given other theme values
 export interface Theme {
   [key: string]: ThemeValue | Theme;
 }

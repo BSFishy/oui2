@@ -1,9 +1,9 @@
-import { type Token } from './token';
+import { type Token, type TokenId } from './token';
 
 class TokenRegistry {
-  readonly tokens: Record<string, Token> = {};
+  readonly tokens: Record<TokenId, Token> = {};
 
-  register(key: string, token: Token) {
+  register(key: TokenId, token: Token) {
     if (Object.keys(this.tokens).includes(key)) {
       throw new Error(
         `A token with the key "${key}" has already been registered`
