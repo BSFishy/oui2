@@ -74,6 +74,7 @@ export const Themeable = <T extends Constructor<LitElement>>(superClass: T) => {
       return this.themeContext;
     }
 
+    // Note: maybe we remove this for the public API, as it may be confusing to set the contextual theme rather than the theme specific to this component??
     set theme(value: Theme | undefined) {
       if (typeof this.themeServiceContext !== 'undefined') {
         this.themeServiceContext.setTheme(value);

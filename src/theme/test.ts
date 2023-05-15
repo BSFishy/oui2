@@ -7,6 +7,12 @@ import '../components/button';
 
 const THEME1: Theme = {
   example: 'red',
+  test: {
+    example2: 'green',
+    test2: {
+      example3: 'blue',
+    },
+  },
 };
 
 const THEME2: Theme = {

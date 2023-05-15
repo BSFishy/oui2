@@ -49,6 +49,7 @@ export class OuiThemeProvider extends LitElement {
   }
 
   render() {
+    // it's possible to define styles here to propagate down, but I don't think that fits the component model _super_ well
     return html`<slot></slot>`;
   }
 }
