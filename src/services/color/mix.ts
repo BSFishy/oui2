@@ -1,6 +1,7 @@
 import { red, green, blue } from './core';
 
 export function mix(color1: number, color2: number, weight: number): number {
+  // TODO: this weight calculation seems redundant
   const w = 2 * weight - 1;
   const w1 = (w + 1) / 2.0;
   const w2 = 1 - w1;
